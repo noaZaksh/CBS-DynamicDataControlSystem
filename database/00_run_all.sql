@@ -1,7 +1,7 @@
 /* =====================================================================
    הרצת כל הסקריפטים לפי הסדר (במצב SQLCMD).
    מתוך תיקיית database:
-     sqlcmd -S localhost -U sa -P "<sa password>" -C -i 00_run_all.sql ^
+     sqlcmd -S localhost -U sa -P "<sa password>" -C -f 65001 -i 00_run_all.sql ^
             -v AppPassword="DcApp#2026!" ReaderPassword="DcReader#2026!"
    ב-SSMS: Query > SQLCMD Mode, ואז להגדיר את המשתנים בראש הקובץ (:setvar).
    ===================================================================== */

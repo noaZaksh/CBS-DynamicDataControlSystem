@@ -7,5 +7,5 @@ param(
   [string]$ReaderPassword = "DcReader#2026!"
 )
 Push-Location $PSScriptRoot
-sqlcmd -S $Server -U $SaUser -P $SaPassword -C -b -i 00_run_all.sql -v AppPassword="$AppPassword" ReaderPassword="$ReaderPassword"
+sqlcmd -S $Server -U $SaUser -P $SaPassword -C -b -f 65001 -i 00_run_all.sql -v AppPassword="$AppPassword" ReaderPassword="$ReaderPassword"
 Pop-Location

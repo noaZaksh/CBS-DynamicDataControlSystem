@@ -15,14 +15,15 @@ services:
       retries: 30
 
   db-init:
-    image: mcr.microsoft.com/mssql-tools
+    # אותו אימג' של SQL Server - כולל sqlcmd חדש (tools18). -f 65001 = קריאת הסקריפטים כ-UTF-8 (עברית)
+    image: mcr.microsoft.com/mssql/server:2022-latest
     depends_on:
       sqlserver: { condition: service_healthy }
     volumes: ["./database:/scripts:ro"]
     working_dir: /scripts
     entrypoint: >
-      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P "${SA_PASSWORD:-DataControls#2026}" -i 00_run_all.sql
-      -v AppPassword="DcApp#2026!" ReaderPassword="DcReader#2026!"
+      /opt/mssql-tools18/bin/sqlcmd -S sqlserver -U sa -P "${SA_PASSWORD:-DataControls#2026}" -C -b -f 65001
+      -i 00_run_all.sql -v AppPassword="DcApp#2026!" ReaderPassword="DcReader#2026!"
 
   ai-service:
     build: ./ai-service
