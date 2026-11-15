@@ -1,0 +1,680 @@
+{
+  "locale": "he-IL",
+  "entities": [
+    {
+      "key": "assignment",
+      "name": "שיבוץ לפרויקט",
+      "pluralName": "שיבוצים לפרויקטים",
+      "description": "שיוך של עובד לפרויקט, כולל תפקיד ואחוז משרה",
+      "synonyms": [
+        "שיבוץ",
+        "שיבוצים",
+        "הקצאה",
+        "הקצאות",
+        "שיוך"
+      ],
+      "fields": [
+        {
+          "key": "roleInProject",
+          "name": "תפקיד בפרויקט",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תפקיד בפרויקט"
+          ]
+        },
+        {
+          "key": "allocationPercent",
+          "name": "אחוז שיבוץ",
+          "description": "אחוז מהמשרה שמוקדש לפרויקט",
+          "dataType": "number",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "אחוז",
+            "אחוז שיבוץ",
+            "אחוז משרה",
+            "הקצאה"
+          ]
+        },
+        {
+          "key": "assignedDate",
+          "name": "תאריך שיבוץ",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך שיבוץ"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "key": "employee",
+          "name": "העובד המשובץ",
+          "targetEntity": "employee",
+          "cardinality": "ManyToOne"
+        },
+        {
+          "key": "project",
+          "name": "הפרויקט",
+          "targetEntity": "project",
+          "cardinality": "ManyToOne"
+        }
+      ]
+    },
+    {
+      "key": "department",
+      "name": "מחלקה",
+      "pluralName": "מחלקות",
+      "description": "יחידות ארגוניות",
+      "synonyms": [
+        "מחלקה",
+        "מחלקות",
+        "יחידה",
+        "יחידות",
+        "אגף"
+      ],
+      "fields": [
+        {
+          "key": "departmentCode",
+          "name": "קוד מחלקה",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "קוד מחלקה"
+          ]
+        },
+        {
+          "key": "departmentName",
+          "name": "שם מחלקה",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "שם מחלקה"
+          ]
+        },
+        {
+          "key": "isActive",
+          "name": "מחלקה פעילה",
+          "description": null,
+          "dataType": "boolean",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "פעילה",
+            "פעיל",
+            "פעילות"
+          ]
+        },
+        {
+          "key": "annualBudget",
+          "name": "תקציב שנתי",
+          "description": "בש\"ח",
+          "dataType": "number",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "תקציב"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "key": "employees",
+          "name": "העובדים במחלקה",
+          "targetEntity": "employee",
+          "cardinality": "OneToMany"
+        },
+        {
+          "key": "manager",
+          "name": "מנהל המחלקה",
+          "targetEntity": "employee",
+          "cardinality": "ManyToOne"
+        },
+        {
+          "key": "projects",
+          "name": "הפרויקטים של המחלקה",
+          "targetEntity": "project",
+          "cardinality": "OneToMany"
+        }
+      ]
+    },
+    {
+      "key": "employee",
+      "name": "עובד",
+      "pluralName": "עובדים",
+      "description": "כל העובדים בארגון, כולל עובדים שסיימו את עבודתם",
+      "synonyms": [
+        "עובד",
+        "עובדים",
+        "עובדת",
+        "עובדות",
+        "איש צוות",
+        "אנשי צוות",
+        "מועסק",
+        "מועסקים"
+      ],
+      "fields": [
+        {
+          "key": "employeeNumber",
+          "name": "מספר עובד",
+          "description": "מזהה העובד במערכת",
+          "dataType": "number",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "מספר עובד",
+            "מזהה"
+          ]
+        },
+        {
+          "key": "fullName",
+          "name": "שם מלא",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "שם",
+            "שם מלא"
+          ]
+        },
+        {
+          "key": "firstName",
+          "name": "שם פרטי",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "שם פרטי"
+          ]
+        },
+        {
+          "key": "lastName",
+          "name": "שם משפחה",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "שם משפחה"
+          ]
+        },
+        {
+          "key": "idNumber",
+          "name": "תעודת זהות",
+          "description": "מספר ת\"ז, 9 ספרות",
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "ת\"ז",
+            "תז",
+            "תעודת זהות",
+            "מספר זהות"
+          ]
+        },
+        {
+          "key": "birthDate",
+          "name": "תאריך לידה",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך לידה",
+            "נולד"
+          ]
+        },
+        {
+          "key": "age",
+          "name": "גיל",
+          "description": "מחושב מתאריך הלידה",
+          "dataType": "number",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "גיל",
+            "גילם",
+            "גילו",
+            "גילה",
+            "בן",
+            "בת"
+          ]
+        },
+        {
+          "key": "email",
+          "name": "דואר אלקטרוני",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "מייל",
+            "אימייל",
+            "דוא\"ל",
+            "דואל",
+            "דואר אלקטרוני"
+          ]
+        },
+        {
+          "key": "phone",
+          "name": "טלפון",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "טלפון",
+            "נייד",
+            "פלאפון"
+          ]
+        },
+        {
+          "key": "city",
+          "name": "עיר מגורים",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "עיר",
+            "מגורים",
+            "ישוב"
+          ]
+        },
+        {
+          "key": "jobTitle",
+          "name": "תפקיד",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תפקיד",
+            "משרה"
+          ]
+        },
+        {
+          "key": "employmentType",
+          "name": "סוג העסקה",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": false,
+          "allowedValues": [
+            "משרה מלאה",
+            "משרה חלקית",
+            "שעתי"
+          ],
+          "synonyms": [
+            "סוג העסקה",
+            "היקף משרה"
+          ]
+        },
+        {
+          "key": "startDate",
+          "name": "תאריך תחילת העסקה",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך תחילה",
+            "תחילת העסקה",
+            "תחילת עבודה",
+            "התחיל",
+            "תאריך התחלה",
+            "תחילת העסקתם"
+          ]
+        },
+        {
+          "key": "endDate",
+          "name": "תאריך סיום העסקה",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך סיום",
+            "סיום העסקה",
+            "סיום עבודה",
+            "עזב",
+            "סיום העסקתם"
+          ]
+        },
+        {
+          "key": "seniorityYears",
+          "name": "ותק (שנים)",
+          "description": "מחושב מתאריך תחילת ההעסקה",
+          "dataType": "number",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "ותק",
+            "שנות ותק"
+          ]
+        },
+        {
+          "key": "monthlySalary",
+          "name": "שכר חודשי",
+          "description": "בש\"ח, ברוטו",
+          "dataType": "number",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "שכר",
+            "משכורת",
+            "משכורתם",
+            "שכרם",
+            "שכרו",
+            "שכרה",
+            "משכורתו",
+            "משכורתה",
+            "הכנסה"
+          ]
+        },
+        {
+          "key": "isActive",
+          "name": "עובד פעיל",
+          "description": "האם העובד מועסק כיום",
+          "dataType": "boolean",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "פעיל",
+            "פעילים",
+            "פעילה",
+            "פעילות"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "key": "department",
+          "name": "המחלקה של העובד",
+          "targetEntity": "department",
+          "cardinality": "ManyToOne"
+        },
+        {
+          "key": "manager",
+          "name": "המנהל הישיר של העובד",
+          "targetEntity": "employee",
+          "cardinality": "ManyToOne"
+        },
+        {
+          "key": "assignments",
+          "name": "השיבוצים של העובד לפרויקטים",
+          "targetEntity": "assignment",
+          "cardinality": "OneToMany"
+        }
+      ]
+    },
+    {
+      "key": "project",
+      "name": "פרויקט",
+      "pluralName": "פרויקטים",
+      "description": "פרויקטים בארגון",
+      "synonyms": [
+        "פרויקט",
+        "פרויקטים",
+        "פרוייקט",
+        "פרוייקטים",
+        "משימה"
+      ],
+      "fields": [
+        {
+          "key": "projectName",
+          "name": "שם פרויקט",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "שם פרויקט"
+          ]
+        },
+        {
+          "key": "status",
+          "name": "סטטוס פרויקט",
+          "description": null,
+          "dataType": "string",
+          "isBusinessRequired": true,
+          "allowedValues": [
+            "פעיל",
+            "הסתיים",
+            "מוקפא"
+          ],
+          "synonyms": [
+            "סטטוס",
+            "מצב"
+          ]
+        },
+        {
+          "key": "startDate",
+          "name": "תאריך התחלה",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": true,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך התחלה",
+            "התחלה"
+          ]
+        },
+        {
+          "key": "endDate",
+          "name": "תאריך סיום",
+          "description": null,
+          "dataType": "date",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תאריך סיום",
+            "סיום"
+          ]
+        },
+        {
+          "key": "budget",
+          "name": "תקציב",
+          "description": "בש\"ח",
+          "dataType": "number",
+          "isBusinessRequired": false,
+          "allowedValues": null,
+          "synonyms": [
+            "תקציב"
+          ]
+        }
+      ],
+      "relations": [
+        {
+          "key": "department",
+          "name": "המחלקה האחראית על הפרויקט",
+          "targetEntity": "department",
+          "cardinality": "ManyToOne"
+        },
+        {
+          "key": "assignments",
+          "name": "השיבוצים לפרויקט",
+          "targetEntity": "assignment",
+          "cardinality": "OneToMany"
+        }
+      ]
+    }
+  ],
+  "operators": [
+    {
+      "key": "eq",
+      "label": "שווה ל",
+      "arity": "single",
+      "appliesTo": [
+        "string",
+        "number",
+        "date",
+        "boolean"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "neq",
+      "label": "שונה מ",
+      "arity": "single",
+      "appliesTo": [
+        "string",
+        "number",
+        "date",
+        "boolean"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "gt",
+      "label": "גדול מ",
+      "arity": "single",
+      "appliesTo": [
+        "number",
+        "date",
+        "string"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "gte",
+      "label": "גדול או שווה ל",
+      "arity": "single",
+      "appliesTo": [
+        "number",
+        "date",
+        "string"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "lt",
+      "label": "קטן מ",
+      "arity": "single",
+      "appliesTo": [
+        "number",
+        "date",
+        "string"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "lte",
+      "label": "קטן או שווה ל",
+      "arity": "single",
+      "appliesTo": [
+        "number",
+        "date",
+        "string"
+      ],
+      "allowsFieldComparison": true
+    },
+    {
+      "key": "between",
+      "label": "בין",
+      "arity": "range",
+      "appliesTo": [
+        "number",
+        "date"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "in",
+      "label": "אחד מ",
+      "arity": "list",
+      "appliesTo": [
+        "string",
+        "number"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "notIn",
+      "label": "אינו אחד מ",
+      "arity": "list",
+      "appliesTo": [
+        "string",
+        "number"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "contains",
+      "label": "מכיל",
+      "arity": "single",
+      "appliesTo": [
+        "string"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "notContains",
+      "label": "אינו מכיל",
+      "arity": "single",
+      "appliesTo": [
+        "string"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "startsWith",
+      "label": "מתחיל ב",
+      "arity": "single",
+      "appliesTo": [
+        "string"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "endsWith",
+      "label": "מסתיים ב",
+      "arity": "single",
+      "appliesTo": [
+        "string"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "isEmpty",
+      "label": "ריק / חסר",
+      "arity": "none",
+      "appliesTo": [
+        "string",
+        "number",
+        "date",
+        "boolean"
+      ],
+      "allowsFieldComparison": false
+    },
+    {
+      "key": "isNotEmpty",
+      "label": "מלא (לא ריק)",
+      "arity": "none",
+      "appliesTo": [
+        "string",
+        "number",
+        "date",
+        "boolean"
+      ],
+      "allowsFieldComparison": false
+    }
+  ],
+  "valueKinds": [
+    "constant",
+    "list",
+    "field",
+    "today"
+  ],
+  "definitionSchemaVersion": 1
+}

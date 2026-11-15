@@ -1,0 +1,20 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+.vs/
+# Node / Angular
+node_modules/
+dist/
+.angular/
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.env
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/

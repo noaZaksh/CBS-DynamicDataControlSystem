@@ -1,0 +1,46 @@
+# הקמת כל המערכת בפקודה אחת:  docker compose up --build
+# לאחר העלייה: http://localhost:4200
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${SA_PASSWORD:-DataControls#2026}"
+    ports: ["1433:1433"]
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$${MSSQL_SA_PASSWORD}\" -C -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      retries: 12
+
+  db-init:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+      sqlserver: { condition: service_healthy }
+    volumes: ["./database:/scripts:ro"]
+    working_dir: /scripts
+    entrypoint: >
+      /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P "${SA_PASSWORD:-DataControls#2026}" -i 00_run_all.sql
+      -v AppPassword="DcApp#2026!" ReaderPassword="DcReader#2026!"
+
+  ai-service:
+    build: ./ai-service
+    environment:
+      AI_PROVIDER: mock
+    ports: ["8000:8000"]
+
+  api:
+    build: ./backend
+    depends_on:
+      db-init: { condition: service_completed_successfully }
+      ai-service: { condition: service_started }
+    environment:
+      Database__ControlStoreConnection: "Server=sqlserver,1433;Database=DataControlsDb;User Id=dc_app;Password=DcApp#2026!;TrustServerCertificate=True"
+      Database__DataReaderConnection: "Server=sqlserver,1433;Database=DataControlsDb;User Id=dc_reader;Password=DcReader#2026!;TrustServerCertificate=True;ApplicationIntent=ReadOnly"
+      AiService__BaseUrl: "http://ai-service:8000"
+      ASPNETCORE_ENVIRONMENT: Development
+    ports: ["5080:8080"]
+
+  frontend:
+    build: ./frontend
+    depends_on: [api]
+    ports: ["4200:80"]
