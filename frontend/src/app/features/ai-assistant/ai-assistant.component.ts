@@ -2,12 +2,12 @@ import { DecimalPipe, PercentPipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../../core/api.service';
-import { DraftTransferService } from '../../core/draft-transfer.service';
-import { AiDraft, RunResult } from '../../core/models';
-import { NotificationService, describeError } from '../../core/notification.service';
-import { ResultsTableComponent } from '../../shared/results-table.component';
-import { SeverityBadgeComponent } from '../../shared/severity-badge.component';
+import { ApiService } from '../../core/services/api.service';
+import { DraftTransferService } from '../../core/services/draft-transfer.service';
+import { AiDraft, RunResult } from '../../core/models/models';
+import { NotificationService, describeError } from '../../core/services/notification.service';
+import { ResultsTableComponent } from '../../shared/results-table/results-table.component';
+import { SeverityBadgeComponent } from '../../shared/severity-badge/severity-badge.component';
 
 const EXAMPLES = [
   'מצא עובדים פעילים שגילם נמוך מ-18 ומשכורתם גבוהה מ-15,000 ש"ח',

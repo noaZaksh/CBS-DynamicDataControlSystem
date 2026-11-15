@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ApiService } from './api.service';
-import { DataModel, DataType, EntityInfo, FieldInfo, OperatorInfo, RelationInfo } from './models';
+import { DataModel, DataType, EntityInfo, FieldInfo, OperatorInfo, RelationInfo } from '../models/models';
 
 /** אפשרות בבורר השדות: שדה של הישות עצמה או שדה דרך קשר ("מחלקה פעילה (המחלקה של העובד)"). */
 export interface FieldOption {

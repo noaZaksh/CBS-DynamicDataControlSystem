@@ -1,6 +1,6 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ResultColumn, ResultRow } from '../core/models';
+import { ResultColumn, ResultRow } from '../../core/models/models';
 
 const PAGE_SIZE = 25;
 

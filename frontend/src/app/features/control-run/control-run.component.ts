@@ -1,11 +1,11 @@
 import { DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
 import { Component, OnInit, computed, inject, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ApiService } from '../../core/api.service';
-import { Control, ControlRunSummary, RunResult } from '../../core/models';
-import { describeError } from '../../core/notification.service';
-import { ResultsTableComponent } from '../../shared/results-table.component';
-import { SeverityBadgeComponent } from '../../shared/severity-badge.component';
+import { ApiService } from '../../core/services/api.service';
+import { Control, ControlRunSummary, RunResult } from '../../core/models/models';
+import { describeError } from '../../core/services/notification.service';
+import { ResultsTableComponent } from '../../shared/results-table/results-table.component';
+import { SeverityBadgeComponent } from '../../shared/severity-badge/severity-badge.component';
 
 /** הפעלת בקרה והצגת התוצאות: כמות חריגות, טבלת רשומות עם סיבת חריגה, והיסטוריית הרצות. */
 @Component({

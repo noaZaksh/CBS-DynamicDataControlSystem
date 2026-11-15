@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { Severity } from '../core/models';
+import { Severity } from '../../core/models/models';
 
 const LABELS: Record<Severity, string> = { high: 'חומרה גבוהה', medium: 'חומרה בינונית', low: 'חומרה נמוכה' };
 

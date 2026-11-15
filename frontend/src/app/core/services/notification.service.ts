@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { ApiProblem, ValidationError } from './models';
+import { ApiProblem, ValidationError } from '../models/models';
 
 export interface Toast {
   id: number;

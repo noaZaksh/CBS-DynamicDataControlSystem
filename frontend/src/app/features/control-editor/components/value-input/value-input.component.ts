@@ -1,8 +1,8 @@
 import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { OperatorInfo, ValueSpec } from '../../core/models';
-import { FieldOption } from '../../core/metadata.store';
-import { FieldPickerComponent } from './field-picker.component';
+import { OperatorInfo, ValueSpec } from '../../../../core/models/models';
+import { FieldOption } from '../../../../core/services/metadata.store';
+import { FieldPickerComponent } from '../field-picker/field-picker.component';
 
 /**
  * שדה ערך שמותאם אוטומטית לסוג הנתון:

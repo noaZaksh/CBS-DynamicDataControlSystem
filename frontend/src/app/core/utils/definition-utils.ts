@@ -1,4 +1,4 @@
-import { ConditionNode, ControlDefinition, FilterNode, GroupNode, RelatedNode } from './models';
+import { ConditionNode, ControlDefinition, FilterNode, GroupNode, RelatedNode } from '../models/models';
 
 let counter = 0;
 

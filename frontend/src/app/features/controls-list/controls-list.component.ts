@@ -2,10 +2,10 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { ApiService } from '../../core/api.service';
-import { Control } from '../../core/models';
-import { NotificationService } from '../../core/notification.service';
-import { SeverityBadgeComponent } from '../../shared/severity-badge.component';
+import { ApiService } from '../../core/services/api.service';
+import { Control } from '../../core/models/models';
+import { NotificationService } from '../../core/services/notification.service';
+import { SeverityBadgeComponent } from '../../shared/severity-badge/severity-badge.component';
 
 /** מסך ראשי: רשימת הבקרות, חיפוש וסינון, והפעלה ישירה מהרשימה. */
 @Component({

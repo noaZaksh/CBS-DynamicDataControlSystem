@@ -114,10 +114,12 @@ ai-service/
   app/prompting.py                 בניית Prompt מתוך מבנה הנתונים
   app/providers/                   AIProvider · MockProvider · LLMProvider (+ Mock מוקלט)
   app/proactive.py                 הצעת בקרות יזומה (משימת רשות)
-frontend/src/app/
-  core/                            API, מאגר מילון נתונים (Signals), מודלים
-  shared/                          טבלת תוצאות, תגיות, הודעות - רכיבים לשימוש חוזר
-  features/                        רשימת בקרות · עורך · תוצאות · AI · מילון נתונים
+frontend/src/app/                  כל רכיב בתיקייה משלו: .ts + .html + .scss
+  core/services/                   API, מאגר מילון נתונים (Signals), הודעות, העברת טיוטות
+  core/models/ · core/utils/       מודלים התואמים ל-API · כלי עזר להגדרות
+  shared/                          results-table · severity-badge · toast-container (לשימוש חוזר)
+  features/                        controls-list · control-run · ai-assistant · data-dictionary
+  features/control-editor/         העורך + components/: condition-group · condition-row · field-picker · value-input
 docs/                              תיעוד
 ```
 

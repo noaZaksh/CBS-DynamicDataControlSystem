@@ -2,14 +2,14 @@ import { Component, OnDestroy, OnInit, computed, inject, input, signal } from '@
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
-import { ApiService } from '../../core/api.service';
-import { cloneDefinition, emptyDefinition } from '../../core/definition-utils';
-import { DraftTransferService } from '../../core/draft-transfer.service';
-import { MetadataStore } from '../../core/metadata.store';
-import { ControlDefinition, RunResult, SaveControlRequest, Severity, ValidateResponse } from '../../core/models';
-import { NotificationService, describeError } from '../../core/notification.service';
-import { ResultsTableComponent } from '../../shared/results-table.component';
-import { ConditionGroupComponent } from './condition-group.component';
+import { ApiService } from '../../core/services/api.service';
+import { cloneDefinition, emptyDefinition } from '../../core/utils/definition-utils';
+import { DraftTransferService } from '../../core/services/draft-transfer.service';
+import { MetadataStore } from '../../core/services/metadata.store';
+import { ControlDefinition, RunResult, SaveControlRequest, Severity, ValidateResponse } from '../../core/models/models';
+import { NotificationService, describeError } from '../../core/services/notification.service';
+import { ResultsTableComponent } from '../../shared/results-table/results-table.component';
+import { ConditionGroupComponent } from './components/condition-group/condition-group.component';
 
 const CATEGORY_SUGGESTIONS = ['שלמות נתונים', 'תאריכים', 'שכר', 'שיוך ארגוני', 'פרויקטים', 'טווח ערכים', 'עקביות סטטוס'];
 

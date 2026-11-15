@@ -1,9 +1,9 @@
 import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ConditionNode, Operator, OperatorInfo, ValueSpec } from '../../core/models';
-import { MetadataStore } from '../../core/metadata.store';
-import { FieldPickerComponent } from './field-picker.component';
-import { ValueInputComponent } from './value-input.component';
+import { ConditionNode, Operator, OperatorInfo, ValueSpec } from '../../../../core/models/models';
+import { MetadataStore } from '../../../../core/services/metadata.store';
+import { FieldPickerComponent } from '../field-picker/field-picker.component';
+import { ValueInputComponent } from '../value-input/value-input.component';
 
 /** שורת תנאי: [שדה] [אופרטור] [ערך]. האופרטורים והקלט נגזרים מסוג השדה במילון הנתונים. */
 @Component({

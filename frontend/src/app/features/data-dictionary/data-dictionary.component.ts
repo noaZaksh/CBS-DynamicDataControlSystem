@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataType, EntityInfo, RelationInfo } from '../../core/models';
-import { MetadataStore } from '../../core/metadata.store';
+import { DataType, EntityInfo, RelationInfo } from '../../core/models/models';
+import { MetadataStore } from '../../core/services/metadata.store';
 
 const TYPE_LABELS: Record<DataType, string> = { string: 'טקסט', number: 'מספר', date: 'תאריך', boolean: 'כן / לא' };
 const TYPE_ICONS: Record<DataType, string> = { string: 'Aa', number: '#', date: '📅', boolean: '✓' };

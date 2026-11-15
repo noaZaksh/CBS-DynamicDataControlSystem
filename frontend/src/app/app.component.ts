@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ToastContainerComponent } from './shared/toast-container.component';
-import { MetadataStore } from './core/metadata.store';
-import { NotificationService } from './core/notification.service';
+import { ToastContainerComponent } from './shared/toast-container/toast-container.component';
+import { MetadataStore } from './core/services/metadata.store';
+import { NotificationService } from './core/services/notification.service';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DataType } from '../../core/models';
-import { FieldOption, MetadataStore } from '../../core/metadata.store';
+import { DataType } from '../../../../core/models/models';
+import { FieldOption, MetadataStore } from '../../../../core/services/metadata.store';
 
 /** בורר שדה עסקי - מקובץ לפי ישות/קשר ("המחלקה של העובד"). ניתן לסנן לפי סוג נתון. */
 @Component({

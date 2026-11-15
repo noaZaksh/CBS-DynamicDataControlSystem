@@ -1,11 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import {
   AiDraft, Control, ControlDefinition, ControlRunSummary, DataModel,
   RunResult, SaveControlRequest, ValidateResponse,
-} from './models';
+} from '../models/models';
 
 /** גישה ל-API. כל הקריאות עוברות דרך כאן - הקומפוננטות לא מכירות כתובות. */
 @Injectable({ providedIn: 'root' })

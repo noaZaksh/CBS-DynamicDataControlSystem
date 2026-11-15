@@ -1,9 +1,9 @@
 import { Component, computed, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { newCondition, newGroup, newRelated } from '../../core/definition-utils';
-import { ConditionNode, FilterNode, GroupNode, RelatedNode } from '../../core/models';
-import { MetadataStore } from '../../core/metadata.store';
-import { ConditionRowComponent } from './condition-row.component';
+import { newCondition, newGroup, newRelated } from '../../../../core/utils/definition-utils';
+import { ConditionNode, FilterNode, GroupNode, RelatedNode } from '../../../../core/models/models';
+import { MetadataStore } from '../../../../core/services/metadata.store';
+import { ConditionRowComponent } from '../condition-row/condition-row.component';
 
 /**
  * קבוצת תנאים רקורסיבית: "וגם"/"או", שלילה, תתי-קבוצות ותנאי "קיים / לא קיים" על רשומות קשורות.

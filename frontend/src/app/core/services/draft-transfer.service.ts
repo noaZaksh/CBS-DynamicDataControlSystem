@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SaveControlRequest } from './models';
+import { SaveControlRequest } from '../models/models';
 
 /**
  * העברת טיוטת בקרה (למשל הצעת AI) למסך העורך, לצורך בדיקה ועריכה לפני שמירה.
