@@ -1,0 +1,12 @@
+.condition { display: grid; grid-template-columns: minmax(180px, 1.3fr) minmax(130px, .9fr) minmax(180px, 1.5fr) auto; gap: 8px; align-items: center; }
+.condition select, .condition input { width: 100%; }
+.has-error select:first-child { border-color: var(--danger); }
+.range { display: flex; align-items: center; gap: 6px; }
+.range > app-value-input { flex: 1; min-width: 0; }
+.hint { margin: 2px 4px 0; }
+@media (max-width: 760px) {
+  .condition { grid-template-columns: 1fr auto; }
+  .op-col, .value-col { grid-column: 1; }
+  .icon-btn { grid-row: 1; grid-column: 2; }
+}
+

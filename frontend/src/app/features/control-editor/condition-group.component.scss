@@ -1,0 +1,15 @@
+.group { border: 1px solid var(--border); border-inline-start: 4px solid var(--primary); border-radius: 8px; padding: 12px; background: var(--surface); }
+.group.or { border-inline-start-color: var(--warning); }
+.group.root { border-width: 0; border-inline-start-width: 0; padding: 0; background: transparent; }
+.group-head { margin-bottom: 10px; }
+.logic { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.logic button { border: 0; background: var(--surface); padding: 5px 12px; font: inherit; cursor: pointer; color: var(--muted); }
+.logic button.on { background: var(--primary); color: #fff; font-weight: 600; }
+.or .logic button.on { background: var(--warning); }
+.negate { display: inline-flex; align-items: center; gap: 4px; color: var(--muted); }
+.children { display: flex; flex-direction: column; gap: 6px; }
+.joiner { font-size: .78rem; font-weight: 700; color: var(--muted); padding-inline-start: 8px; }
+.related { border: 1px dashed var(--ai); border-radius: 8px; padding: 10px; background: var(--ai-soft); display: flex; flex-direction: column; gap: 8px; }
+.related.has-error { border-color: var(--danger); }
+.actions { margin-top: 10px; }
+

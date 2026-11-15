@@ -10,56 +10,8 @@ import { ValueInputComponent } from './value-input.component';
   selector: 'app-condition-row',
   standalone: true,
   imports: [FormsModule, FieldPickerComponent, ValueInputComponent],
-  template: `
-    <div class="condition" [class.has-error]="hasError()">
-      <div class="field-col">
-        <app-field-picker [entityKey]="entityKey()" [value]="node().field" (valueChange)="setField($event)" />
-      </div>
-
-      <div class="op-col">
-        <select [ngModel]="node().operator" (ngModelChange)="setOperator($event)" [disabled]="!field()" aria-label="השוואה">
-          @for (op of operators(); track op.operator) {
-            <option [value]="op.operator">{{ label(op) }}</option>
-          }
-        </select>
-      </div>
-
-      <div class="value-col">
-        @if (field() && operator(); as op) {
-          @if (op.arity === 'single' || op.arity === 'list') {
-            <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
-                             [spec]="node().value ?? defaultSpec()" (specChange)="setValue('value', $event)" />
-          } @else if (op.arity === 'range') {
-            <div class="range">
-              <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
-                               [spec]="node().value ?? defaultSpec()" (specChange)="setValue('value', $event)" />
-              <span>עד</span>
-              <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
-                               [spec]="node().valueTo ?? defaultSpec()" (specChange)="setValue('valueTo', $event)" />
-            </div>
-          }
-        }
-      </div>
-
-      <button class="icon-btn" (click)="remove.emit()" title="הסרת תנאי" aria-label="הסרת תנאי">✕</button>
-    </div>
-    @if (field()?.field?.description) {
-      <div class="hint small muted">ℹ {{ field()!.field.description }}</div>
-    }
-  `,
-  styles: `
-    .condition { display: grid; grid-template-columns: minmax(180px, 1.3fr) minmax(130px, .9fr) minmax(180px, 1.5fr) auto; gap: 8px; align-items: center; }
-    .condition select, .condition input { width: 100%; }
-    .has-error select:first-child { border-color: var(--danger); }
-    .range { display: flex; align-items: center; gap: 6px; }
-    .range > app-value-input { flex: 1; min-width: 0; }
-    .hint { margin: 2px 4px 0; }
-    @media (max-width: 760px) {
-      .condition { grid-template-columns: 1fr auto; }
-      .op-col, .value-col { grid-column: 1; }
-      .icon-btn { grid-row: 1; grid-column: 2; }
-    }
-  `,
+  templateUrl: './condition-row.component.html',
+  styleUrl: './condition-row.component.scss',
 })
 export class ConditionRowComponent {
   private readonly metadata = inject(MetadataStore);

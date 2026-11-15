@@ -1,0 +1,36 @@
+<div class="condition" [class.has-error]="hasError()">
+  <div class="field-col">
+    <app-field-picker [entityKey]="entityKey()" [value]="node().field" (valueChange)="setField($event)" />
+  </div>
+
+  <div class="op-col">
+    <select [ngModel]="node().operator" (ngModelChange)="setOperator($event)" [disabled]="!field()" aria-label="השוואה">
+      @for (op of operators(); track op.operator) {
+        <option [value]="op.operator">{{ label(op) }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="value-col">
+    @if (field() && operator(); as op) {
+      @if (op.arity === 'single' || op.arity === 'list') {
+        <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
+                         [spec]="node().value ?? defaultSpec()" (specChange)="setValue('value', $event)" />
+      } @else if (op.arity === 'range') {
+        <div class="range">
+          <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
+                           [spec]="node().value ?? defaultSpec()" (specChange)="setValue('value', $event)" />
+          <span>עד</span>
+          <app-value-input [entityKey]="entityKey()" [field]="field()!" [operator]="op"
+                           [spec]="node().valueTo ?? defaultSpec()" (specChange)="setValue('valueTo', $event)" />
+        </div>
+      }
+    }
+  </div>
+
+  <button class="icon-btn" (click)="remove.emit()" title="הסרת תנאי" aria-label="הסרת תנאי">✕</button>
+</div>
+@if (field()?.field?.description) {
+  <div class="hint small muted">ℹ {{ field()!.field.description }}</div>
+}
+

@@ -1,0 +1,11 @@
+<select [ngModel]="value()" (ngModelChange)="valueChange.emit($event)" [attr.aria-label]="placeholder()" [class.invalid]="!value()">
+  <option value="" disabled>{{ placeholder() }}</option>
+  @for (g of groups(); track g.name) {
+    <optgroup [label]="g.name">
+      @for (o of g.options; track o.path) {
+        <option [value]="o.path" [title]="o.field.description ?? ''">{{ o.field.displayName }}{{ o.field.isBusinessRequired ? ' *' : '' }}</option>
+      }
+    </optgroup>
+  }
+</select>
+

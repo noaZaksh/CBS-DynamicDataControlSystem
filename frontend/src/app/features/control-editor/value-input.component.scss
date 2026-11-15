@@ -1,0 +1,6 @@
+.value { display: flex; gap: 6px; align-items: center; min-width: 0; }
+.value > :last-child { flex: 1; min-width: 0; }
+.mode { flex: 0 0 auto; }
+.days { width: 80px; }
+.nowrap { flex-wrap: nowrap; }
+

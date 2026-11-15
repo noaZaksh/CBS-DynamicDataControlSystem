@@ -1,0 +1,8 @@
+.toolbar { margin-bottom: 12px; }
+.search { flex: 1 1 240px; max-width: 360px; }
+.reasons { min-width: 260px; }
+.reason { color: var(--danger); font-size: .88rem; }
+.reason + .reason { margin-top: 2px; }
+td.evidence { background: #fffaf2; }
+.pager { justify-content: center; margin-top: 12px; }
+

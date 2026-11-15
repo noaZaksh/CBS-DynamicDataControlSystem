@@ -8,24 +8,7 @@ import { NotificationService } from './core/notification.service';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive, ToastContainerComponent],
-  template: `
-    <header class="topbar">
-      <a routerLink="/controls" class="brand">
-        <span class="brand-mark">✓</span>
-        <span>מערכת בקרות נתונים</span>
-      </a>
-      <nav class="nav">
-        <a routerLink="/controls" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">בקרות</a>
-        <a routerLink="/controls/new" routerLinkActive="active">בקרה חדשה</a>
-        <a routerLink="/ai" routerLinkActive="active">✨ בשפה חופשית</a>
-        <a routerLink="/dictionary" routerLinkActive="active">מילון נתונים</a>
-      </nav>
-    </header>
-    <main class="page">
-      <router-outlet />
-    </main>
-    <app-toast-container />
-  `,
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   constructor() {

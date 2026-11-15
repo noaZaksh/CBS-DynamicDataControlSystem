@@ -12,68 +12,8 @@ const PAGE_SIZE = 25;
   selector: 'app-results-table',
   standalone: true,
   imports: [FormsModule],
-  template: `
-    <div class="row toolbar">
-      <input class="search" type="search" placeholder="חיפוש בתוצאות..." [ngModel]="search()" (ngModelChange)="search.set($event); page.set(0)" aria-label="חיפוש בתוצאות" />
-      @if (reasonTypes().length > 1) {
-        <select [ngModel]="reasonFilter()" (ngModelChange)="reasonFilter.set($event); page.set(0)" aria-label="סינון לפי סיבה">
-          <option value="">כל הסיבות</option>
-          @for (r of reasonTypes(); track r) { <option [value]="r">{{ r }}</option> }
-        </select>
-      }
-      <span class="spacer"></span>
-      <span class="muted small">מוצגות {{ filtered().length }} מתוך {{ rows().length }} רשומות</span>
-      <button class="btn btn-sm" (click)="exportCsv()" [disabled]="!filtered().length">⬇ ייצוא ל-Excel (CSV)</button>
-    </div>
-
-    <div class="table-wrap">
-      <table class="data">
-        <thead>
-          <tr>
-            <th class="sortable" (click)="sortBy('__title')">{{ titleLabel() }} {{ arrow('__title') }}</th>
-            @for (c of dataColumns(); track c.key) {
-              <th class="sortable" (click)="sortBy(c.key)" [title]="c.role === 'evidence' ? 'שדה שמשתתף בתנאי הבקרה' : ''">
-                {{ c.label }} {{ arrow(c.key) }}
-              </th>
-            }
-            <th>סיבת החריגה</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (row of pageRows(); track row.key) {
-            <tr>
-              <td><strong>{{ row.title ?? '#' + row.key }}</strong></td>
-              @for (c of dataColumns(); track c.key) {
-                <td [class.num]="c.dataType === 'number'" [class.evidence]="c.role === 'evidence'">{{ format(row.values[c.key], c) }}</td>
-              }
-              <td class="reasons">
-                @for (r of row.reasons; track $index) { <div class="reason">⚠ {{ r }}</div> }
-              </td>
-            </tr>
-          } @empty {
-            <tr><td [attr.colspan]="dataColumns().length + 2" class="empty">לא נמצאו רשומות התואמות לחיפוש</td></tr>
-          }
-        </tbody>
-      </table>
-    </div>
-
-    @if (pageCount() > 1) {
-      <div class="row pager">
-        <button class="btn btn-sm" (click)="page.set(page() - 1)" [disabled]="page() === 0">→ הקודם</button>
-        <span class="muted small">עמוד {{ page() + 1 }} מתוך {{ pageCount() }}</span>
-        <button class="btn btn-sm" (click)="page.set(page() + 1)" [disabled]="page() >= pageCount() - 1">הבא ←</button>
-      </div>
-    }
-  `,
-  styles: `
-    .toolbar { margin-bottom: 12px; }
-    .search { flex: 1 1 240px; max-width: 360px; }
-    .reasons { min-width: 260px; }
-    .reason { color: var(--danger); font-size: .88rem; }
-    .reason + .reason { margin-top: 2px; }
-    td.evidence { background: #fffaf2; }
-    .pager { justify-content: center; margin-top: 12px; }
-  `,
+  templateUrl: './results-table.component.html',
+  styleUrl: './results-table.component.scss',
 })
 export class ResultsTableComponent {
   readonly columns = input.required<ResultColumn[]>();

@@ -8,19 +8,8 @@ import { FieldOption, MetadataStore } from '../../core/metadata.store';
   selector: 'app-field-picker',
   standalone: true,
   imports: [FormsModule],
-  template: `
-    <select [ngModel]="value()" (ngModelChange)="valueChange.emit($event)" [attr.aria-label]="placeholder()" [class.invalid]="!value()">
-      <option value="" disabled>{{ placeholder() }}</option>
-      @for (g of groups(); track g.name) {
-        <optgroup [label]="g.name">
-          @for (o of g.options; track o.path) {
-            <option [value]="o.path" [title]="o.field.description ?? ''">{{ o.field.displayName }}{{ o.field.isBusinessRequired ? ' *' : '' }}</option>
-          }
-        </optgroup>
-      }
-    </select>
-  `,
-  styles: `select { width: 100%; } select.invalid { color: var(--muted); }`,
+  templateUrl: './field-picker.component.html',
+  styleUrl: './field-picker.component.scss',
 })
 export class FieldPickerComponent {
   private readonly metadata = inject(MetadataStore);

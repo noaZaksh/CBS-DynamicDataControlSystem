@@ -1,0 +1,56 @@
+<div class="value">
+  @if (modes().length > 1) {
+    <select class="mode" [ngModel]="spec().kind" (ngModelChange)="setKind($event)" aria-label="סוג ערך">
+      <option value="constant">ערך</option>
+      @if (canCompareField()) { <option value="field">שדה אחר</option> }
+      @if (field().field.dataType === 'date') { <option value="today">יחסית להיום</option> }
+    </select>
+  }
+
+  @switch (spec().kind) {
+    @case ('field') {
+      <app-field-picker [entityKey]="entityKey()" [value]="spec().field ?? ''" [onlyType]="field().field.dataType"
+                        [exclude]="field().path" placeholder="בחרו שדה להשוואה..." (valueChange)="patch({ field: $event })" />
+    }
+    @case ('today') {
+      <div class="row nowrap">
+        <span>היום</span>
+        <select [ngModel]="sign()" (ngModelChange)="setOffset($event, absOffset())" aria-label="כיוון">
+          <option value="+">+</option><option value="-">−</option>
+        </select>
+        <input type="number" min="0" class="days" [ngModel]="absOffset()" (ngModelChange)="setOffset(sign(), $event)" aria-label="ימים" />
+        <span>ימים</span>
+      </div>
+    }
+    @case ('list') {
+      <input type="text" [ngModel]="listText()" (ngModelChange)="setList($event)" placeholder="ערכים מופרדים בפסיק" aria-label="רשימת ערכים" />
+    }
+    @default {
+      @switch (field().field.dataType) {
+        @case ('boolean') {
+          <select [ngModel]="spec().value" (ngModelChange)="patch({ value: $event })" aria-label="ערך">
+            <option [ngValue]="true">כן</option>
+            <option [ngValue]="false">לא</option>
+          </select>
+        }
+        @case ('number') {
+          <input type="number" [ngModel]="spec().value" (ngModelChange)="patch({ value: $event })" placeholder="מספר" aria-label="ערך" />
+        }
+        @case ('date') {
+          <input type="date" [ngModel]="spec().value" (ngModelChange)="patch({ value: $event })" aria-label="תאריך" />
+        }
+        @default {
+          @if (field().field.allowedValues?.length) {
+            <select [ngModel]="spec().value" (ngModelChange)="patch({ value: $event })" aria-label="ערך">
+              <option [ngValue]="null" disabled>בחרו ערך...</option>
+              @for (v of field().field.allowedValues; track v) { <option [ngValue]="v">{{ v }}</option> }
+            </select>
+          } @else {
+            <input type="text" [ngModel]="spec().value" (ngModelChange)="patch({ value: $event })" placeholder="טקסט" aria-label="ערך" />
+          }
+        }
+      }
+    }
+  }
+</div>
+

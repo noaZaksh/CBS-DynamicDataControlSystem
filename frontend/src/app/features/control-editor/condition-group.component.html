@@ -1,0 +1,65 @@
+<div class="group" [class.root]="depth() === 0" [class.or]="group().logic === 'or'">
+  <div class="group-head row">
+    @if (group().children.length > 1) {
+      <div class="logic" role="radiogroup" aria-label="חיבור בין התנאים">
+        <button type="button" [class.on]="group().logic === 'and'" (click)="setLogic('and')">כל התנאים (וגם)</button>
+        <button type="button" [class.on]="group().logic === 'or'" (click)="setLogic('or')">לפחות אחד (או)</button>
+      </div>
+    } @else {
+      <span class="muted small">התנאי:</span>
+    }
+    <label class="negate small" title="הופך את משמעות הקבוצה">
+      <input type="checkbox" [ngModel]="!!group().negate" (ngModelChange)="setNegate($event)" /> לא מתקיים
+    </label>
+    <span class="spacer"></span>
+    @if (depth() > 0 && removable()) {
+      <button class="icon-btn" (click)="remove.emit()" title="הסרת קבוצה" aria-label="הסרת קבוצה">✕</button>
+    }
+  </div>
+
+  <div class="children">
+    @for (child of group().children; track trackNode($index, child); let i = $index) {
+      @if (i > 0) { <div class="joiner">{{ group().logic === 'and' ? 'וגם' : 'או' }}</div> }
+
+      @switch (child.type) {
+        @case ('condition') {
+          <app-condition-row [node]="asCondition(child)" [entityKey]="entityKey()" [errorIds]="errorIds()"
+                             (changed)="changed.emit()" (remove)="removeAt(i)" />
+        }
+        @case ('group') {
+          <app-condition-group [group]="asGroup(child)" [entityKey]="entityKey()" [depth]="depth() + 1" [errorIds]="errorIds()"
+                               (changed)="changed.emit()" (remove)="removeAt(i)" />
+        }
+        @case ('related') {
+          <div class="related" [class.has-error]="child.id && errorIds().has(child.id)">
+            <div class="row">
+              <select [ngModel]="asRelated(child).quantifier" (ngModelChange)="setQuantifier(asRelated(child), $event)" aria-label="קיים / לא קיים">
+                <option value="any">קיימת לפחות רשומה אחת ב</option>
+                <option value="none">לא קיימת אף רשומה ב</option>
+              </select>
+              <select [ngModel]="asRelated(child).relation" (ngModelChange)="setRelation(asRelated(child), $event)" aria-label="קשר">
+                @for (r of manyRelations(); track r.key) { <option [value]="r.key">{{ r.displayName }}</option> }
+              </select>
+              <span class="muted small">שעומדת בתנאים:</span>
+              <span class="spacer"></span>
+              <button class="icon-btn" (click)="removeAt(i)" title="הסרה" aria-label="הסרת תנאי קשר">✕</button>
+            </div>
+            @if (asRelated(child).filter; as inner) {
+              <app-condition-group [group]="inner" [entityKey]="targetOf(asRelated(child))" [depth]="depth() + 1"
+                                   [removable]="false" [errorIds]="errorIds()" (changed)="changed.emit()" />
+            }
+          </div>
+        }
+      }
+    }
+  </div>
+
+  <div class="actions row">
+    <button class="btn btn-sm" (click)="add('condition')">+ תנאי</button>
+    @if (depth() < 3) { <button class="btn btn-sm" (click)="add('group')">+ קבוצת תנאים</button> }
+    @if (manyRelations().length && depth() < 2) {
+      <button class="btn btn-sm" (click)="add('related')" title="למשל: מחלקה שאין בה אף עובד פעיל">+ תנאי על רשומות קשורות</button>
+    }
+  </div>
+</div>
+

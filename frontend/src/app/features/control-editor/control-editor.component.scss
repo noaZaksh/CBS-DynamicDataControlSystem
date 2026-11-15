@@ -1,0 +1,10 @@
+.desc { margin-top: 14px; }
+.entities { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.entity { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; text-align: right; padding: 12px 14px;
+  border: 1px solid var(--border); border-radius: 10px; background: var(--surface); cursor: pointer; font: inherit; }
+.entity:hover { border-color: var(--primary); }
+.entity.selected { border-color: var(--primary); background: var(--primary-soft); box-shadow: 0 0 0 1px var(--primary) inset; }
+.sql { margin-top: 12px; }
+.actions { position: sticky; bottom: 0; background: var(--bg); padding: 12px 0; margin-top: 16px; border-top: 1px solid var(--border); }
+.preview { margin-top: 16px; }
+
